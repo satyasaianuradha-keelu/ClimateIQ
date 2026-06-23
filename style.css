@@ -1,0 +1,908 @@
+/* ==========================================
+   CLIMATEIQ
+   Premium SaaS Weather Intelligence Dashboard
+========================================== */
+
+:root {
+
+  --primary: #4F46E5;
+  --secondary: #06B6D4;
+  --accent: #10B981;
+
+  --bg: #F8FAFC;
+  --surface: rgba(255,255,255,0.55);
+
+  --text: #0F172A;
+  --text-light: #64748B;
+
+  --border: rgba(255,255,255,0.25);
+
+  --shadow:
+    0 10px 40px rgba(0,0,0,0.08);
+
+  --radius: 22px;
+
+  --transition: .35s ease;
+}
+
+/* DARK THEME */
+
+body.dark {
+
+  --bg: #0F172A;
+
+  --surface: rgba(15,23,42,.60);
+
+  --text: #F8FAFC;
+
+  --text-light: #CBD5E1;
+
+  --border: rgba(255,255,255,.08);
+
+  --shadow:
+    0 15px 40px rgba(0,0,0,.45);
+}
+
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+
+  font-family: 'Inter', sans-serif;
+
+  background: var(--bg);
+
+  color: var(--text);
+
+  min-height: 100vh;
+
+  overflow-x: hidden;
+
+  transition: background .4s ease;
+}
+
+/* ==========================================
+   BACKGROUND
+========================================== */
+
+.bg-gradient {
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    radial-gradient(circle at top left,
+      rgba(79,70,229,.35),
+      transparent 35%),
+
+    radial-gradient(circle at top right,
+      rgba(6,182,212,.30),
+      transparent 30%),
+
+    radial-gradient(circle at bottom center,
+      rgba(16,185,129,.25),
+      transparent 40%);
+
+  z-index: -1;
+}
+
+/* ==========================================
+   GLASSMORPHISM
+========================================== */
+
+.glass {
+
+  background: var(--surface);
+
+  backdrop-filter: blur(18px);
+
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid var(--border);
+
+  box-shadow: var(--shadow);
+
+  border-radius: var(--radius);
+}
+
+/* ==========================================
+   LAYOUT
+========================================== */
+
+body {
+
+  display: flex;
+}
+
+.sidebar {
+
+  width: 260px;
+
+  min-height: 100vh;
+
+  position: fixed;
+
+  left: 0;
+  top: 0;
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
+  border-right: 1px solid var(--border);
+
+  backdrop-filter: blur(20px);
+}
+
+main {
+
+  margin-left: 260px;
+
+  width: calc(100% - 260px);
+
+  padding: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 25px;
+}
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.logo {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  font-size: 1.4rem;
+
+  font-weight: 800;
+}
+
+.logo i {
+
+  color: var(--secondary);
+
+  font-size: 1.6rem;
+}
+
+.sidebar ul {
+
+  list-style: none;
+
+  margin-top: 40px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.sidebar li {
+
+  padding: 14px 16px;
+
+  border-radius: 14px;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  transition: var(--transition);
+}
+
+.sidebar li:hover {
+
+  background: rgba(255,255,255,.12);
+
+  transform: translateX(5px);
+}
+
+.sidebar li i {
+
+  color: var(--primary);
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+button {
+
+  border: none;
+
+  cursor: pointer;
+
+  transition: var(--transition);
+}
+
+#themeToggle,
+#locationBtn,
+#searchBtn {
+
+  background: linear-gradient(
+    135deg,
+    var(--primary),
+    var(--secondary)
+  );
+
+  color: white;
+
+  padding: 12px 15px;
+
+  border-radius: 14px;
+}
+
+button:hover {
+
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 12px 25px rgba(79,70,229,.25);
+}
+
+/* ==========================================
+   TOPBAR
+========================================== */
+
+.topbar {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.search-box {
+
+  flex: 1;
+
+  display: flex;
+
+  overflow: hidden;
+
+  border-radius: 16px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+}
+
+.search-box input {
+
+  flex: 1;
+
+  border: none;
+
+  outline: none;
+
+  padding: 16px;
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-size: 1rem;
+}
+
+/* ==========================================
+   HERO
+========================================== */
+
+.hero {
+
+  padding: 40px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  min-height: 260px;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.hero::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 250px;
+  height: 250px;
+
+  right: -70px;
+  top: -70px;
+
+  border-radius: 50%;
+
+  background:
+      rgba(79,70,229,.25);
+
+  filter: blur(50px);
+}
+
+.hero h1 {
+
+  font-size: 3rem;
+
+  font-weight: 800;
+}
+
+.hero h2 {
+
+  font-size: 5rem;
+
+  margin: 10px 0;
+}
+
+.hero p {
+
+  color: var(--text-light);
+
+  font-size: 1.1rem;
+}
+
+.hero img {
+
+  width: 120px;
+}
+
+#climateScore {
+
+  margin-top: 15px;
+
+  text-align: center;
+
+  color: var(--accent);
+
+  font-size: 1.8rem;
+}
+
+/* ==========================================
+   WEATHER STATS
+========================================== */
+
+.stats-grid {
+
+  display: grid;
+
+  grid-template-columns:
+      repeat(auto-fit,minmax(220px,1fr));
+
+  gap: 20px;
+}
+
+.card {
+
+  padding: 25px;
+
+  transition: var(--transition);
+
+  position: relative;
+}
+
+.card:hover {
+
+  transform:
+      translateY(-6px);
+
+  box-shadow:
+      0 18px 35px rgba(0,0,0,.12);
+}
+
+.card h4 {
+
+  color: var(--text-light);
+
+  margin-bottom: 12px;
+
+  font-size: .9rem;
+}
+
+.card span {
+
+  font-size: 2rem;
+
+  font-weight: 700;
+}
+
+/* ==========================================
+   INSIGHTS
+========================================== */
+
+.insights {
+
+  padding: 25px;
+}
+
+.insights h2 {
+
+  margin-bottom: 20px;
+}
+
+#insightsContainer {
+
+  display: grid;
+
+  grid-template-columns:
+      repeat(auto-fit,minmax(280px,1fr));
+
+  gap: 15px;
+}
+
+.insight-card {
+
+  padding: 18px;
+
+  border-radius: 18px;
+
+  border-left: 4px solid var(--accent);
+
+  background:
+    rgba(16,185,129,.08);
+
+  transition: var(--transition);
+}
+
+.insight-card:hover {
+
+  transform: translateY(-4px);
+}
+
+/* ==========================================
+   FORECAST
+========================================== */
+
+.hourly-container {
+
+  display: flex;
+
+  gap: 16px;
+
+  overflow-x: auto;
+
+  padding: 15px 5px;
+}
+
+.hourly-container::-webkit-scrollbar {
+
+  height: 8px;
+}
+
+.hourly-container::-webkit-scrollbar-thumb {
+
+  background: var(--primary);
+
+  border-radius: 10px;
+}
+
+.hour-card {
+
+  min-width: 130px;
+
+  text-align: center;
+
+  padding: 18px;
+}
+
+.hour-card img {
+
+  width: 50px;
+}
+
+#weeklyForecast {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+
+  padding: 20px;
+}
+
+.day-row {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 16px;
+
+  border-radius: 14px;
+
+  background:
+    rgba(255,255,255,.06);
+}
+
+/* ==========================================
+   CHARTS
+========================================== */
+
+.chart-grid {
+
+  display: grid;
+
+  grid-template-columns:
+      repeat(auto-fit,minmax(420px,1fr));
+
+  gap: 20px;
+}
+
+.chart-card {
+
+  padding: 20px;
+
+  min-height: 380px;
+}
+
+canvas {
+
+  width: 100% !important;
+
+  height: 320px !important;
+}
+
+/* ==========================================
+   COMPARE
+========================================== */
+
+.compare {
+
+  padding: 25px;
+}
+
+.compare h2 {
+
+  margin-bottom: 20px;
+}
+
+.compare-inputs {
+
+  display: flex;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+
+  margin-bottom: 20px;
+}
+
+.compare-inputs input {
+
+  flex: 1;
+
+  min-width: 180px;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  border: 1px solid var(--border);
+
+  background: transparent;
+
+  color: var(--text);
+}
+
+.compare-inputs button {
+
+  padding: 14px 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      var(--secondary)
+    );
+
+  color: white;
+
+  border-radius: 12px;
+}
+
+/* ==========================================
+   JOURNAL
+========================================== */
+
+.journal {
+
+  padding: 25px;
+}
+
+.journal textarea {
+
+  width: 100%;
+
+  min-height: 140px;
+
+  padding: 18px;
+
+  margin: 20px 0;
+
+  border-radius: 16px;
+
+  border: 1px solid var(--border);
+
+  background: transparent;
+
+  color: var(--text);
+
+  resize: vertical;
+}
+
+#saveJournal {
+
+  padding: 14px 20px;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--accent),
+      var(--secondary)
+    );
+
+  color: white;
+}
+
+#journalEntries {
+
+  margin-top: 25px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.journal-entry {
+
+  padding: 18px;
+
+  border-radius: 16px;
+
+  background:
+    rgba(255,255,255,.05);
+
+  border: 1px solid var(--border);
+}
+
+.journal-entry small {
+
+  color: var(--text-light);
+}
+
+/* ==========================================
+   LOADING SKELETON
+========================================== */
+
+.skeleton {
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    rgba(255,255,255,.08);
+}
+
+.skeleton::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  transform: translateX(-100%);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.25),
+      transparent
+    );
+
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ==========================================
+   ANIMATIONS
+========================================== */
+
+@keyframes fadeIn {
+
+  from {
+
+    opacity: 0;
+  }
+
+  to {
+
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(40px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+.hero,
+.card,
+.chart-card,
+.compare,
+.journal,
+.insights {
+
+  animation:
+      slideUp .7s ease forwards;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 1100px) {
+
+  .sidebar {
+
+    width: 90px;
+  }
+
+  .sidebar span,
+  .sidebar li {
+
+    font-size: 0;
+  }
+
+  .sidebar i {
+
+    font-size: 1.1rem;
+  }
+
+  main {
+
+    margin-left: 90px;
+
+    width: calc(100% - 90px);
+  }
+}
+
+@media (max-width: 900px) {
+
+  .hero {
+
+    flex-direction: column;
+
+    text-align: center;
+
+    gap: 25px;
+  }
+
+  .hero h2 {
+
+    font-size: 4rem;
+  }
+
+  .chart-grid {
+
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+
+  main {
+
+    padding: 18px;
+  }
+
+  .sidebar {
+
+    display: none;
+  }
+
+  main {
+
+    width: 100%;
+
+    margin-left: 0;
+  }
+
+  .topbar {
+
+    flex-direction: column;
+  }
+
+  .compare-inputs {
+
+    flex-direction: column;
+  }
+
+  .hero h1 {
+
+    font-size: 2rem;
+  }
+
+  .hero h2 {
+
+    font-size: 3rem;
+  }
+
+  canvas {
+
+    height: 250px !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .stats-grid {
+
+    grid-template-columns: 1fr;
+  }
+
+  .card span {
+
+    font-size: 1.5rem;
+  }
+
+  .hour-card {
+
+    min-width: 110px;
+  }
+}

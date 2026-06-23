@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClimateIQ | AI Weather Intelligence</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="bg-gradient"></div>
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <i class="fa-solid fa-cloud-sun"></i>
+            <span>ClimateIQ</span>
+        </div>
+
+        <ul>
+
+            <li><i class="fa-solid fa-house"></i> Dashboard</li>
+            <li><i class="fa-solid fa-chart-line"></i> Analytics</li>
+            <li><i class="fa-solid fa-earth-americas"></i> Compare</li>
+            <li><i class="fa-solid fa-book"></i> Journal</li>
+            <li><i class="fa-solid fa-star"></i> Favorites</li>
+
+        </ul>
+
+        <button id="themeToggle">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+
+    </aside>
+
+    <main>
+
+        <!-- Top Bar -->
+
+        <header class="topbar">
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="cityInput"
+                    placeholder="Search city..." />
+
+                <button id="searchBtn">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+
+            </div>
+
+            <button id="locationBtn">
+                <i class="fa-solid fa-location-crosshairs"></i>
+            </button>
+
+        </header>
+
+        <!-- Hero Section -->
+
+        <section class="hero glass">
+
+            <div>
+
+                <h1 id="cityName">Mumbai</h1>
+
+                <h2 id="temperature">
+                    28°C
+                </h2>
+
+                <p id="condition">
+                    Clear Sky
+                </p>
+
+            </div>
+
+            <div>
+
+                <img
+                    id="weatherIcon"
+                    src=""
+                    alt="Weather">
+
+                <h3 id="climateScore">
+                    87 / 100
+                </h3>
+
+            </div>
+
+        </section>
+
+        <!-- Current Weather Cards -->
+
+        <section class="stats-grid">
+
+            <div class="card glass">
+                <h4>Humidity</h4>
+                <span id="humidity">--</span>
+            </div>
+
+            <div class="card glass">
+                <h4>Wind</h4>
+                <span id="wind">--</span>
+            </div>
+
+            <div class="card glass">
+                <h4>Pressure</h4>
+                <span id="pressure">--</span>
+            </div>
+
+            <div class="card glass">
+                <h4>Visibility</h4>
+                <span id="visibility">--</span>
+            </div>
+
+            <div class="card glass">
+                <h4>UV Index</h4>
+                <span id="uv">--</span>
+            </div>
+
+            <div class="card glass">
+                <h4>AQI</h4>
+                <span id="aqi">--</span>
+            </div>
+
+        </section>
+
+        <!-- AI Insights -->
+
+        <section class="glass insights">
+
+            <h2>
+                AI Weather Intelligence
+            </h2>
+
+            <div id="insightsContainer"></div>
+
+        </section>
+
+        <!-- Hourly Forecast -->
+
+        <section class="glass">
+
+            <h2>24 Hour Forecast</h2>
+
+            <div id="hourlyForecast" class="hourly-container"></div>
+
+        </section>
+
+        <!-- Weekly Forecast -->
+
+        <section class="glass">
+
+            <h2>7 Day Forecast</h2>
+
+            <div id="weeklyForecast"></div>
+
+        </section>
+
+        <!-- Charts -->
+
+        <section class="chart-grid">
+
+            <div class="glass chart-card">
+                <canvas id="tempChart"></canvas>
+            </div>
+
+            <div class="glass chart-card">
+                <canvas id="humidityChart"></canvas>
+            </div>
+
+            <div class="glass chart-card">
+                <canvas id="windChart"></canvas>
+            </div>
+
+            <div class="glass chart-card">
+                <canvas id="rainChart"></canvas>
+            </div>
+
+        </section>
+
+        <!-- Multi City Compare -->
+
+        <section class="glass compare">
+
+            <h2>
+                Multi-City Comparison
+            </h2>
+
+            <div class="compare-inputs">
+
+                <input
+                    type="text"
+                    placeholder="City 1">
+
+                <input
+                    type="text"
+                    placeholder="City 2">
+
+                <input
+                    type="text"
+                    placeholder="City 3">
+
+                <button>
+                    Compare
+                </button>
+
+            </div>
+
+            <canvas id="compareChart"></canvas>
+
+        </section>
+
+        <!-- Journal -->
+
+        <section class="glass journal">
+
+            <h2>
+                Weather Journal
+            </h2>
+
+            <textarea
+                id="journalText"
+                placeholder="Write your notes..."></textarea>
+
+            <button id="saveJournal">
+                Save Entry
+            </button>
+
+            <div id="journalEntries"></div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
