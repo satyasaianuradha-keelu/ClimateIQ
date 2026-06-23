@@ -153,10 +153,6 @@ ClimateIQ/
 ├── index.html
 ├── style.css
 ├── script.js
-├── assets/
-│   ├── icons/
-│   └── images/
-│
 └── README.md
 ```
 
